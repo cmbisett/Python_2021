@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <title>Dojo Servey</title>
+</head>
+<body>
+    <form action="/process" method="POST">
+        <p>
+            <label for="imput">Your Name:</label>
+            <input type="text" name="name">
+        </p>
+        <p>
+            <label for="location">Dojo Location:</label>
+            <select name="locations" id="">
+                <option value="Bellevue">Bellevue</option>
+                <option value="San Jose">San Joso</option>
+                <option value="Chicago">Chicago</option>
+                <option value="Philly">Philly</option>
+            </select>
+        </p>
+        <p>
+            <label for="language">Favorite Language</label>
+            <select name="languages" id="">
+                <option value="HTML">HTML</option>
+                <option value="CSS">CSS</option>
+                <option value="Python">Python</option>
+                <option value="JS">JavaScript</option>
+            </select>
+        </p>
+        <p>
+            <label for="">Comment (optional):</label>
+        </p>
+        <p>
+            <textarea name="comments" id="" cols="30" rows="10"></textarea>
+        </p>
+        <p>
+            <button>Submit</button>
+        </p>
+    </form>
+</body>
+</html>

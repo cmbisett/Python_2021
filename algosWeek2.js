@@ -149,3 +149,33 @@ function longestPalindromicSubstring(str) {
 console.log(longestPalindromicSubstring(str1))
 console.log(longestPalindromicSubstring(str2))
 console.log(longestPalindromicSubstring(str3))
+
+
+
+//----------------------------------------------------
+//endoded string
+//----------------------------------------------------
+const str4 = "bbcc";
+const expected4 = "bbcc";
+
+function encodeStr(str){
+  newstring = ''
+  count = 0
+  for (var i = 0; i <= str.length; i++); {
+    newstring += str[i]
+    for (var j = i + 1; j < str.length; j++); {
+      if (str[i] == str[j]) { // if (str[i] == str[i-1])
+        count++
+      } else {
+        newstring += count
+        count = 0
+        i = j - 1
+      }
+    }
+  }
+  return newstring;
+}
+
+console.log(encodeStr(str4))
+
+
