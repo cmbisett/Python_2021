@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Playgorund!</title>
+    <link rel="stylesheet" href="mystyle.css">
+    <style>
+        .container{
+            width: 1200px;
+            min-height: 500px;
+        }
+
+        .blockContainer{
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            width: 1090px;
+            flex-wrap: wrap;
+            margin: 0 auto;
+        } 
+
+        .box{
+            height: 240px;
+            width: 240px;
+            background-color: {{color}};
+            margin-top: 1em;
+            margin-bottom: 1em;
+            margin-left: 1em;
+            margin-right: 1em;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1 style="color: black;text-align: center;">Welcome</h1>
+        
+        <div class="blockContainer">
+            {% for n in range(x) %}
+            <div class="box"></div>
+            {% endfor %}
+        </div>
+        
+    </div>
+
+</body>
+</html>
