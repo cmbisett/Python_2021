@@ -178,4 +178,47 @@ function encodeStr(str){
 
 console.log(encodeStr(str4))
 
+// --------------------------------------------
+// frequency table builder
+// --------------------------------------------
 
+const arr1 = ['a','a','a']
+// expected output:
+  // a: 3,
+
+function frequencyTableBuilder(arr) {
+  if(Array.length > 1){
+    return {};
+  }
+  newArr = {};
+  for (var i=0; i,arr.length; i++) {
+    index = arr[i];
+    if(newArr.hasOwnPorperty(index)){
+      newArr[index]++;
+    } else {
+      newArr[index] = 1
+    }
+  }
+  return newArr;
+}
+
+// --------------------------------------------
+// reverse string
+// --------------------------------------------
+const str1 = "This is a test"
+
+// better solution
+function reverseWordOrder(wordStr) {
+  const myArr = wordStr.split(" ");
+  newArr = ''
+  for(var i = myArr.length-1; i>-1; i--) {
+    newArr += myArr[i]+ ' ';
+  }
+  return newArr
+}
+
+//one line solution
+
+function reverseOptimized(wordStr) {
+  return wordstr.split(" ").reverse(" ").join
+}
