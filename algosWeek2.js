@@ -191,7 +191,7 @@ function frequencyTableBuilder(arr) {
     return {};
   }
   newArr = {};
-  for (var i=0; i,arr.length; i++) {
+  for (var i=0; i<arr.length; i++) {
     index = arr[i];
     if(newArr.hasOwnPorperty(index)){
       newArr[index]++;
@@ -222,3 +222,163 @@ function reverseWordOrder(wordStr) {
 function reverseOptimized(wordStr) {
   return wordstr.split(" ").reverse(" ").join
 }
+
+
+//frequency counter, when frequency is > 1 move to next part of loop
+/* 
+  Given a string,
+  return a new string with the duplicates excluded
+*/
+
+const str1 = "abcABC";
+const expected1 = "abcABC";
+
+const str2 = "helloo";
+const expected2 = "helo";
+
+const str3 = "parallel"
+const expected3 = "parle"
+
+function stringDedupe(str) {
+  deduped = str[0]
+  for(var i= 1; i < str.length; i++) {
+    if(str[i] != str[i-1]){
+      deduped += (str[i])
+    }
+  }
+  return deduped
+}
+
+console.log(stringDedupe(str2))
+
+
+
+
+/*****************************************************************************/
+// split by " " seperate words, reverse worse, join together
+
+/* 
+  Given a string containing space separated words
+  Reverse each word in the string.
+  If you need to, use .split to start, then try to do it without.
+*/
+
+const str1 = "hello";
+const expected1 = "olleh";
+
+const str2 = "hello world";
+const expected2 = "olleh dlrow";
+
+const str3 = "abc def ghi";
+const expected3 = "cba fed ihg";
+
+// function reverseWords(str) {
+//   preSpaceText = []
+//   reverseWordsString = []
+//   for(var i = 0; i < str.length; i++){
+//     if(str[i] == " " || i == str.length-1){
+//       if(i == str.length-1){
+//         preSpaceText.push(str[i])
+//       }
+//       preSpaceText.reverse().join()
+//       reverseWordsString.push(preSpaceText)
+//       reverseWordsString.push("")
+//       preSpaceText = []
+//     }
+//     else{
+//       preSpaceText.push(str[i])
+//     }
+//   }
+//   return reverseWordsString.join(" ")
+// }
+// console.log(reverseWords(str2))
+
+
+// --------------------------------
+// BELOW IS AN INCOMPLETE FUNCTION
+// --------------------------------
+function splitReverse(str) {
+  var reverseText = str.split(" ")
+  newOrder = ''
+  for (var i = 0; i < str.length; i++) {
+    newOrder += reverseText[i] + ' '
+  }
+  return newOrder
+}
+
+console.log(splitReverse(str2))
+
+
+// String: Rotate String
+  // Create a standalone function that accepts a string and an integer, 
+  // and rotates the characters in the string to the right by that given integer amount.
+
+const str1 = "Hello World";
+const rotateAmnt1 = 0;
+const expected1 = "Hello World";
+
+const str2 = "Hello World";
+const rotateAmnt2 = 1;
+const expected2 = "dHello Worl";
+
+const str3 = "Hello World";
+const rotateAmnt3 = 2;
+const expected3 = "ldHello Wor";
+
+const str4 = "Hello World";
+const rotateAmnt4 = 4;
+const expected4 = "orldHello W";
+
+function rotateStr(str, n) {
+  arr = str.split("");
+  for(let i = str.length-1; i>=str.length-n; i--){ //start at end of array and go for n times
+    arr.unshift(arr.pop());     // pop from end of array and unshift to beginning
+
+  }
+  let answer = arr.join("");
+  return answer;
+
+}
+
+//Better Effiancy O(constant)
+function rotateStr2(str,n){
+  let answer = "";
+  for(let i = str.length-1; i>= str.length-n;i--){  //goes from the end of the string n(rotation) time
+      answer = str[i]+answer;                         //and add its to the new variable
+  }
+  answer += str.substring(0,str.length-n);  //adding a subtring to var answer starting at the beginning
+  return answer;                              //of the string
+}
+
+console.log(rotateStr2(str3,2));
+
+//console.log(rotateStr(str1,4));
+
+// Create the function isRotation(str1,str2) that
+// returns whether the second string is a rotation of the first.
+
+const strA1 = "ABCD";
+const strB1 = "CDAB";
+const expected1 = true;
+// Explanation: if you start from A in the 2nd string, the letters are in the same order, just rotated
+
+const strA2 = "ABCD";
+const strB2 = "CDBA";
+const expected2 = false;
+// Explanation: all same letters in 2nd string, but out of order
+
+function isRotation(s1, s2) {
+  for(var i = 0; i < s1.length; i++){
+    let str = rotateStr(s1, i);
+    if (str == s2){
+     return true;
+    }  
+  } 
+  return false;
+}
+
+console.log(isRotation(strA1,strB1))
+
+//every possible rotation of a string is contained in the string added to its self
+//   return (s1 + s1).includes(s2)
+//"ABCDABCD" CHECK FOR "CDBA"
