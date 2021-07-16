@@ -382,3 +382,111 @@ console.log(isRotation(strA1,strB1))
 //every possible rotation of a string is contained in the string added to its self
 //   return (s1 + s1).includes(s2)
 //"ABCDABCD" CHECK FOR "CDBA"
+
+
+/* 
+  An anagram is a word or phrase formed by rearranging the letters of a different word or phrase,
+  typically using all the original letters exactly once.
+  Is there a quick way to determine if they aren't an anagram before spending more time?
+  Given two strings
+  return whether or not they are anagrams
+*/
+
+const strA1 = "yes";
+const strB1 = "eys";
+const expected1 = true;
+
+const strA2 = "yes";
+const strB2 = "eYs";
+const expected2 = true;
+
+const strA3 = "no";
+const strB3 = "noo";
+const expected3 = false;
+
+const strA4 = "silent";
+const strB4 = "listen";
+const expected4 = true;
+
+
+function isAnagram(s1, s2) {
+  if (s1.length !== s2.length) {
+    return false;
+  }
+
+  let arr = s2.toLowerCase()//.split("")
+  let arr2 = s1.toLowerCase()
+  for (var i = 0; i < arr2.length; i++) {
+    if (arr.includes(arr2[i])) {
+      return true;
+    } else {
+      return false
+    }
+  }
+}
+
+
+//another version, not complete
+
+// function isAnotherAnogram(s1,s2) {
+//   if (s1.length !== s2.length) {
+//     return false;
+//   }
+
+//   const s1CharFreq = {};
+//   const s2CharFreq = {};
+
+//   for (var i = 0; i < s1.length; i++) {
+//     const s1CharUpper = s1[i].toUpperCase();
+//     const s2CharFreq = s2[i].toUpperCase();
+
+//     if(s1CHarFreq.hasOwnPorperty(s1CharUpper)) {
+//       s1CharFreq[s1CharUpper]++;
+//     } else {
+//       s1CharFreq[s1CharUpper] = 1
+//     }
+
+//     if(s2CHarFreq.hasOwnPorperty(s2CharUpper)) {
+//       s2CharFreq[s2CharUpper]++;
+//     } else {
+//       s2CharFreq[s2CharUpper] = 1
+//     }
+
+//     for (const char in s1CharFreq) {
+//       if(!s2.hasOwnPorperty(char)) reutrn false;
+
+//       if(s1CharFreq[char] !== s2CharFreq)
+//     }
+
+//   }
+
+// }
+
+console.log(isAnagram(strA1,strB1))
+
+/* 
+  Given a string that may have extra spaces at the start and the end,
+  return a new string that has the extra spaces at the start and the end trimmed (removed)
+  do not remove any other spaces.
+*/
+
+const str1 = "   hello world     ";
+const expected1 = "hello world";
+
+function trim(str) {
+  let start
+  let end
+
+  for (let i = 0; i < str.length; i++){
+    if (str[i] != " "){
+      start = i;
+    }
+  }
+  for (let y = str.length - 1; y >= 0; y--){
+    if (str[y] != " "){
+      end = y;
+    }
+  }
+
+  return str.substring(i, y)
+}
