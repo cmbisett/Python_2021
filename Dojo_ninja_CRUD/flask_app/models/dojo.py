@@ -18,7 +18,7 @@ class Dojo:
             VALUES (%(name)s);
         """
         dojo_id = connectToMySQL("dojos_ninjas").query_db(query, data)
-
+        
         return dojo_id
 
     @classmethod
