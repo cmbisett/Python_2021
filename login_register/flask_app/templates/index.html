@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login and Registration</title>
+  <link href='https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css' rel='stylesheet' integrity='sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x' crossorigin='anonymous'>
+</head>
+<body>
+  <div class="container p-3">
+    <h1 class="text-center">Login and Registration</h1>
+    <div class="container p-5 border border-dark d-flex justify-content-between col-10">
+      <div class="register-form">
+        <h3>Register</h3>
+        <form class="form-group" action="/register" method="post">
+          <p>
+            
+            <input class="form-control" type="text" name="first_name" id="" placeholder="First Name">
+          </p>
+          <p>
+            
+            <input class="form-control" type="text" name="last_name" id="" placeholder="Last Name">
+          </p>
+          <p>
+            
+            <input class="form-control" type="text" name="email" id="" placeholder="Email">
+          </p>
+          <p>
+            
+            <input class="form-control" type="password" name="password" id="" placeholder="Password">
+          </p>
+          <p>
+            
+            <input class="form-control" type="password" name="confirm_password" id="" placeholder="Confrim Password">
+          </p>
+          <button class='btn btn-dark'>Register</button>
+        </form>
+      </div>
+      <div class="login-form">
+        <h3>Login</h3>
+        <form class="form-forup" action="/login" method="post">
+          <p>
+            Email:
+            <input class="form-control" type="text" name="email" id="" placeholder="test@test.com">
+          </p>
+          <p>
+            Password:
+            <input class="form-control" type="password" name="password" id="" placeholder="Password">
+          </p>
+          <button class='btn btn-dark'>Login</button>
+        </form>
+      </div>
+    </div>
+    <div class="errors d-flex flex-column align-items-center">
+      {% with messages = get_flashed_messages() %}
+        {% if messages %}
+          {% for message in messages %}
+            <p class="text-danger alert alert-danger" >{{ message }}</p>
+          {% endfor %}
+        {% endif %}
+      {% endwith %}
+    </div>
+  </div>
+</body>
+</html>

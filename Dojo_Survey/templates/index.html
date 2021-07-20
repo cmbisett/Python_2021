@@ -15,7 +15,7 @@
         </p>
         <p>
             <label for="location">Dojo Location:</label>
-            <select name="locations" id="">
+            <select name="location" id="">
                 <option value="Bellevue">Bellevue</option>
                 <option value="San Jose">San Joso</option>
                 <option value="Chicago">Chicago</option>
@@ -24,7 +24,7 @@
         </p>
         <p>
             <label for="language">Favorite Language</label>
-            <select name="languages" id="">
+            <select name="language" id="">
                 <option value="HTML">C++</option>
                 <option value="CSS">C#</option>
                 <option value="Python">Python</option>
@@ -35,11 +35,20 @@
             <label for="">Comment (optional):</label>
         </p>
         <p>
-            <textarea name="comments" id="" cols="30" rows="10"></textarea>
+            <textarea name="comment" id="" cols="30" rows="10"></textarea>
         </p>
         <p>
             <button>Submit</button>
         </p>
     </form>
+    {% with messages = get_flashed_messages() %}     <!-- declare a variable called messages -->
+        {% if messages %}                            <!-- check if there are any messages -->
+            {% for message in messages %}            <!-- loop through the messages -->
+                <p style="color: red;">{{message}}</p>                   <!-- display each message in a paragraph tag -->
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+
+
 </body>
 </html>
