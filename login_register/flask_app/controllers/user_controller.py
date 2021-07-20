@@ -4,16 +4,16 @@ from flask_app.models.user import User
 
 @app.route("/")
 def index():
-    # if "uuid" in session:
-    #     return redirect("/users")
+    if "uuid" in session:
+        return redirect("/users")
     return render_template('index.html')
 
 
 @app.route('/users')
 def display_users():
-    # if "uuid" not in session:
-    #     flash("Must log in")
-    #     return redirect('/')
+    if "uuid" not in session:
+        flash("Must log in")
+        return redirect('/')
 
     return render_template("success.html", all_users = User.get_all(), user = User.get_one({"id": session['uuid']}))
 
