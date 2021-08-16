@@ -13,48 +13,65 @@
     <div class="container p-5 border border-dark d-flex justify-content-between col-10">
       <div class="register-form">
         <h3>Register</h3>
-        <form class="form-group" action="/register" method="post">
+        <form class="form-group" action="/register/validate" method="post">
           <p>
+            
             <input class="form-control" type="text" name="first_name" id="" placeholder="First Name">
+            {% for error in get_flashed_messages(category_filter = ["first_name"]) %}
+              <p class="alert alert-danger">{{ error }}</p>
+            {% endfor %}
           </p>
           <p>
+            
             <input class="form-control" type="text" name="last_name" id="" placeholder="Last Name">
+            {% for error in get_flashed_messages(category_filter = ["last_name"]) %}
+              <p class="alert alert-danger">{{ error }}</p>
+            {% endfor %}
           </p>
           <p>
+            
             <input class="form-control" type="text" name="email" id="" placeholder="Email">
+            {% for error in get_flashed_messages(category_filter = ["email"]) %}
+              <p class="alert alert-danger">{{ error }}</p>
+            {% endfor %}
           </p>
           <p>
+            
             <input class="form-control" type="password" name="password" id="" placeholder="Password">
+            {% for error in get_flashed_messages(category_filter = ["password"]) %}
+              <p class="alert alert-danger">{{ error }}</p>
+            {% endfor %}
           </p>
           <p>
-            <input class="form-control" type="password" name="confirm_password" id="" placeholder="Confirm Password">
+            
+            <input class="form-control" type="password" name="confirm" id="" placeholder="Confirm Password">
+            {% for error in get_flashed_messages(category_filter = ["confirm"]) %}
+              <p class="alert alert-danger">{{ error }}</p>
+            {% endfor %}
           </p>
           <button class='btn btn-dark'>Register</button>
         </form>
       </div>
       <div class="login-form">
         <h3>Login</h3>
-        <form class="form-forup" action="/login" method="post">
+        <form class="form-forup" action="/login/validate" method="post">
           <p>
             Email:
             <input class="form-control" type="text" name="email" id="" placeholder="test@test.com">
+            {% for error in get_flashed_messages(category_filter = ["login_email"]) %}
+              <p class="alert alert-danger">{{ error }}</p>
+            {% endfor %}
           </p>
           <p>
             Password:
             <input class="form-control" type="password" name="password" id="" placeholder="Password">
+            {% for error in get_flashed_messages(category_filter = ["login_password"]) %}
+              <p class="alert alert-danger">{{ error }}</p>
+            {% endfor %}
           </p>
           <button class='btn btn-dark'>Login</button>
         </form>
       </div>
-    </div>
-    <div class="errors d-flex flex-column align-items-center">
-      {% with messages = get_flashed_messages() %}
-        {% if messages %}
-          {% for message in messages %}
-            <p class="text-danger alert alert-danger" >{{ message }}</p>
-          {% endfor %}
-        {% endif %}
-      {% endwith %}
     </div>
   </div>
 </body>

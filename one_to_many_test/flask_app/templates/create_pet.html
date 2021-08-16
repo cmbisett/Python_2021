@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Create Pet</title>
+  <link href='https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css' rel='stylesheet' integrity='sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x' crossorigin='anonymous'>
+</head>
+<body>
+  <div class="container p-3">
+    <h1 class="text-center">Login and Registration</h1>
+    <div class="container p-5 border border-dark d-flex justify-content-between col-10">
+      <div class="register-form">
+        <h3>Register</h3>
+        <form class="form-group" action="/newpet/create" method="post">
+          <p>
+            
+            <input class="form-control" type="text" name="animal" id="" placeholder="Animal Type">
+            {% for error in get_flashed_messages(category_filter = ["animal"]) %}
+              <p class="alert alert-danger">{{ error }}</p>
+            {% endfor %}
+          </p>
+          <p>
+            
+            <input class="form-control" type="text" name="cool" id="" placeholder="Are they Cool?">
+            {% for error in get_flashed_messages(category_filter = ["cool"]) %}
+              <p class="alert alert-danger">{{ error }}</p>
+            {% endfor %}
+          </p>
+          <button class='btn btn-dark'>Login</button>
+        </form>
+      </div>
+    </div>
+    <div class="errors d-flex flex-column align-items-center">
+      {% with messages = get_flashed_messages() %}
+        {% if messages %}
+          {% for message in messages %}
+            <p class="text-danger alert alert-danger" >{{ message }}</p>
+          {% endfor %}
+        {% endif %}
+      {% endwith %}
+    </div>
+  </div>
+</body>
+</html>

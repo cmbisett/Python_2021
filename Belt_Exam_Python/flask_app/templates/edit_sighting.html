@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <title>POST REQUESTS</title>
+
+</head>
+
+
+<body>
+    <div class="container" style="text-align: center; margin-top: 200px;">
+        {% with messages = get_flashed_messages() %}
+        <!-- declare a variable called messages -->
+        {% if messages %}
+        <!-- check if there are any messages -->
+        {% for message in messages %}
+        <!-- loop through the messages -->
+
+        <div style="background-color: red; color: white;width: 500px; padding: 20px; margin: auto 415px;">
+            <p> {{message}}</p>
+        </div>
+        <!-- display each message in a paragraph tag -->
+        {% endfor %} {% endif %} {% endwith %}
+        <h1>Sasquatch Websighting</h1>
+        <h1>{{logged_user.first_name}} {{logged_user.last_name}}</h1>
+        <div>
+        <form action="/dashboard">
+            <button class="btn btn-primary">Dashboard</button></form> |
+        <form action="/user/logout">
+            <button class="btn btn-primary">Logout</button>
+        </form>
+        <div>
+    <div class="container">
+        <div class="signUp">
+            <form action="/existing_sighting/{{ sighting.id }}/edit" method="post">
+                <fieldset class="border p-3">
+                    <legend class="w-auto">Edit Sighting!</legend>
+                    <div class="form-group">
+                        <input class="form-control" type="text" name="location" id="" value="{{ sighting.location }}"> 
+                        {% for error in get_flashed_messages(category_filter = ["location"]) %}
+                        <p class="alert alert-danger">{{ error }}</p>
+                        {% endfor %}
+                    </div>
+                    <div class="form-group">
+                        <input class="form-control" type="date" name="date" id="" value="{{ sighting.date }}"> 
+                        {% for error in get_flashed_messages(category_filter = ["date"]) %}
+                        <p class="alert alert-danger">{{ error }}</p>
+                        {% endfor %}
+                    <div class="form-group">
+                        <input class="form-control" type="text" name="info" id="" value="{{ sighting.info }}"> 
+                        {% for error in get_flashed_messages(category_filter = ["info"]) %}
+                        <p class="alert alert-danger">{{ error }}</p>
+                        {% endfor %}
+                    <div class="form-group">
+                        <input class="form-control" type="number" name="number" id="" value="{{ sighting.number }}"> 
+                        {% for error in get_flashed_messages(category_filter = ["number"]) %}
+                        <p class="alert alert-danger">{{ error }}</p>
+                        {% endfor %}
+                    <button class="btn btn-primary">Submit</button>
+                </fieldset>
+            </form>
+        </div>
+</body>
+</html>

@@ -532,3 +532,383 @@ function balancePoint(nums) {
 }
 
 console.log(balancePoint(nums1))
+
+
+
+
+/* 
+  Array: Binary Search (non recursive)
+  Given a sorted array and a value, return whether the array contains that value.
+  Do not sequentially iterate the array. Instead, ‘divide and conquer’,
+  taking advantage of the fact that the array is sorted .
+*/
+
+
+const nums1 = [1, 3, 5, 6];
+const searchNum1 = 4;
+const expected1 = false;
+
+const nums2 = [4, 5, 6, 8, 12];
+const searchNum2 = 5;
+const expected2 = true;
+
+const nums3 = [3, 4, 6, 8, 12];
+const searchNum3 = 3;
+const expected3 = true;
+
+function binarySearch(sortedNums, searchNum) {
+    
+    
+    if (sortedNums[sortedNums.length/2] == searchNum){
+      return true
+    }
+    else if (sortedNums[sortedNums.length/2] > searchNum){
+      // iterate to the left (lower numbers)
+      for (let j = sortedNums.length/2; j = sortedNums.length/2; j--){
+        if (j == searchNum){
+          return true
+        }
+      }
+    }
+    else if (sortedNums[sortedNums.length/2] < searchNum){
+      // iterate to larger numbers
+      for (let j = sortedNums.length/2; j = sortedNums.length/2; j++){
+        if (j == searchNum){
+          return true
+        }
+
+      }
+    }
+    return false
+}
+
+console.log(binarySearch(nums1, searchNum1))
+console.log(binarySearch(nums2, searchNum2))
+console.log(binarySearch(nums3, searchNum3))
+
+
+
+/* 
+  Given a SORTED array of integers, dedupe the array 
+  Because array elements are already in order, all duplicate values will be grouped together.
+  Ok to use a new array
+  Bonus: do it in O(n) time (no nested loops, new array ok)
+*/
+
+const nums1 = [1, 1, 1, 1];
+const expected1 = [1];
+
+const nums2 = [1, 1, 2, 2, 3, 3];
+const expected2 = [1, 2, 3];
+
+const nums3 = [1, 1, 2, 3, 3, 4];
+const expected3 = [1, 2, 3, 4];
+
+function dedupeSorted(nums) {
+  let output = []
+
+  for(var i = 0; i < nums.length; i++) {
+    output.push(nums[i]) ///////
+    for(var j = i+1; j < nums.length; j++) {
+      if(nums[j] !== nums[i]) {
+        output.push(nums[j])
+        i = j
+      } else {
+        i = j
+      }
+    }
+  }
+  return output
+}
+
+//first way of doing it
+// function dedupeSorted(nums) {
+//   newArray = []
+
+//   for (let i = 0; i < nums.length; i++){
+//     if (!newArray.includes(nums[i])){
+//       newArray.push(nums[i])
+//     }
+//   }
+//   return newArray
+// }
+
+console.log(dedupeSorted(nums1))
+console.log(dedupeSorted(nums2))
+console.log(dedupeSorted(nums3))
+
+
+/* 
+  Given an int to represent how much change is needed
+  calculate the fewest number of coins needed to create that change,
+  using the standard US denominations
+*/
+
+const cents1 = 25;
+const expected1 = { quarter: 1 };
+
+const cents2 = 50;
+const expected2 = { quarter: 2 };
+
+const cents3 = 9;
+const expected3 = { nickel: 1, penny: 4 };
+
+const cents4 = 99;
+const expected4 = { quarter: 3, dime: 2, penny: 4 };
+
+function fewestCoinChange(cents) {
+  //gets the max num of coins first
+  let coinNum = {}
+  while(cents) {
+    if (cents % 25 == 0) {
+      coinNum["quarter"] = cents / 25
+      cents %= 25
+    } else if (cents % 10 == 0) {
+      coinNum["dime"] = cents / 10
+      cents %= 10
+    } else if (cents % 5 == 0) {
+      coinNum["nickle"] = cents / 5
+      cents %= 5
+    } else {
+      coinNum["pennie"] = cents / 1
+      cents %= 1
+    }
+  }
+  return coinNum
+}
+
+console.log(fewestCoinChange(cents1))
+console.log(fewestCoinChange(cents2))
+console.log(fewestCoinChange(cents3))
+console.log(fewestCoinChange(cents4))
+
+
+/* 
+  Recursive Factorial
+  Input: integer
+  Output: integer, product of ints from 1 up to given integer
+  
+  If less than zero, treat as zero.
+  Bonus: If not integer, truncate (remove decimals).
+  
+  Experts tell us 0! is 1.
+  
+  rFact(3) = 6 (1*2*3)
+  rFact(6.8) = 720 (1*2*3*4*5*6)
+*/
+
+const num1 = 3;
+const expected1 = 6;
+// Explanation: 1*2*3 = 6
+
+const num2 = 6.8;
+const expected2 = 720;
+// Explanation: 1*2*3*4*5*6 = 720
+
+const num3 = 0;
+const expected3 = 1;
+
+function factorial(n) {
+  n = Math.floor(n)
+  //exeption
+  if(n <= 0) {
+    return 1
+  }
+
+  //Base case
+  if(n > 1) {
+    return n * factorial(n-1)
+  } else {
+    return 1;
+  }
+}
+
+console.log(factorial(num1))
+console.log(factorial(num2))
+console.log(factorial(num3))
+
+/*****************************************************************************/
+
+/* 
+  Return the fibonacci number at the nth position, recursively.
+  
+  Fibonacci sequence: 0, 1, 1, 2, 3, 5, 8, 13, 21, 34, ...
+  The next number is found by adding up the two numbers before it,
+  starting with 0 and 1 as the first two numbers of the sequence.
+*/
+
+const num1 = 0;
+const expected1 = 0;
+
+const num2 = 1;
+const expected2 = 1;
+
+const num3 = 2;
+const expected3 = 1;
+
+const num4 = 3;
+const expected4 = 2;
+
+const num5 = 4;
+const expected5 = 3;
+
+const num6 = 8;
+const expected6 = 21;
+
+function fibonacci(num) {
+  //Base case
+  if(num <= 1) {
+    return num;
+  }
+
+  return fibonacci(num - 1) + fibonacci(num - 2);
+}
+
+console.log(fibonacci(num1))
+console.log(fibonacci(num2))
+console.log(fibonacci(num3))
+console.log(fibonacci(num4))
+console.log(fibonacci(num5))
+console.log(fibonacci(num6))
+
+
+
+/*
+  Recursive Binary Search
+  Input: SORTED array of ints, int value
+  Output: bool representing if value is found
+  Recursively search to find if the value exists, do not loop over every element.
+  Approach:
+  Take the middle item and compare it to the given value.
+  Based on that comparison, narrow your search to a particular section of the array
+*/
+
+const nums1 = [1, 3, 5, 6];
+const searchNum1 = 4;
+const expected1 = false;
+
+const nums2 = [4, 5, 6, 8, 12];
+const searchNum2 = 5;
+const expected2 = true;
+
+const nums3 = [3, 4, 6, 8, 12];
+const searchNum3 = 3;
+const expected3 = true;
+
+function binarySearch(sortedNums, searchNum) {
+  //Base Case
+  let found = false 
+  if(sortedNums.length == 0) {    //if the array is 0 than the searchnum isnt in there
+    return false
+  }
+  if(sortedNums.length == 1) {       //if the arr length is 1 check to see if searchnum in the there
+    if(searchNum == sortedNums[0]) {    //if it is, return true
+      return true                       //if not, return false
+    } else {
+      return false
+    }
+  }
+
+  let middleIndex = Math.floor(sortedNums.length/2);     //set  variable that is the middle of the array to start
+
+  if(searchNum == sortedNums[middleIndex]) {           //if the searchnum == the middle start point, return  true
+    return true;
+  } else if (searchNum > sortedNums[middleIndex]) {    //if its greater than the search number, re-run the function with the new range
+    binarySearch(sortedNums.slice(middleIndex+1), searchNum)    //on the greater half of the arr
+  } else {
+    found = binarySearch(sortedNums.slice(0, middleIndex), searchNum) //if not than re-run the function with the lower half of the arr
+  }                                                             //.slice() is making a new range of the arr, that we will run the new function from
+  return found
+}
+
+console.log(binarySearch(nums1, searchNum1))
+console.log(binarySearch(nums2, searchNum2))
+console.log(binarySearch(nums3, searchNum3))
+
+
+// start recursion at end of string ans go backwords, str.length-1
+
+function reverseStr(str) {
+  if(str == "") {
+    return false
+  }
+
+  return reverseStr(str.substring(1))
+}
+
+
+
+
+
+
+function sumToOneDigit(num) {
+  string_num = num.toString()
+  sum = 0
+
+  if (sum < 2 ) {
+    sum = parseInt(string_num)
+    return sum
+  }
+  sum += sumToOneDigit(parsInt(string_num.substring(0, string_num.length - 1)))
+}
+
+
+
+
+
+
+/*
+  Given an array nested with unknown amount of arrays,
+  return the integers all under ONE array.
+*/
+
+const arr1 = [1, 2, 3, 4, 5, 6];
+const expected1 = [1, 2, 3, 4, 5, 6];
+
+const arr2 = [1, 2, [4, 5], 6];
+const expected2 = [1, 2, 4, 5, 6];
+
+const arr3 = [1, 2, [3, 4, [5]], 6];
+const expected3 = [1, 2, 3, 4, 5, 6];
+
+/* 
+  Two useful built in functions:
+  Array.isArray() : returns true if argument is an array
+    - Array.isArray([1, 2, 3]) => true
+    - Array.isArray([4, 5, 6]) => true
+    - Array.isArray(1) => false
+  
+  Array.concat() : concatenates two arrays together
+    - arr1.concat(arr2) => [1, 2, 3, 4, 5, 6, 1, 2, [4, 5], 6]
+*/
+
+// function recursiveFlatten(arr) {
+//   let result = []
+//   if (arr && arr.length > 0) {
+//     arr.forEach(function(value) {       //looping throught the array
+//       if(Array.isArray(value)) {
+//         result = result.concat(recursiveFlatten(value))      //if its an array it concats it 
+//       } else {
+//         result.push(value)
+//       }
+//     })
+//   }
+//   return result
+// }
+
+function newRecursiveFlatten(arr) {
+  let result = []
+  for (let i = 0; i < arr.length; i ++) {  //loop through the array for each index
+    if(Array.isArray(arr[i])) {
+      result = result.concat(newRecursiveFlatten(arr[i]))     //if the index is an array, concat the new array with the function 
+    } else {
+      result.push(arr[i])   //if the index is not an array, push it to the variable result(which in an empty array)
+    }
+  }
+  return result
+}
+
+
+console.log(newRecursiveFlatten(arr1))
+console.log(newRecursiveFlatten(arr2))
+console.log(newRecursiveFlatten(arr3))

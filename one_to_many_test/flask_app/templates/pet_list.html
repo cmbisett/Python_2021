@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href='https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css' rel='stylesheet' integrity='sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x' crossorigin='anonymous'>
+    <title>Users Pets</title>
+</head>
+<body>
+    <div class="container" style="text-align: center; margin-top: 200px;">
+        {% with messages = get_flashed_messages() %}
+        <!-- declare a variable called messages -->
+        {% if messages %}
+        <!-- check if there are any messages -->
+        {% for message in messages %}
+        <!-- loop through the messages -->
+
+        <div style="background-color: red; color: white;width: 500px; padding: 20px; margin: auto 415px;">
+            <p> {{message}}</p>
+        </div>
+        <!-- display each message in a paragraph tag -->
+        {% endfor %} {% endif %} {% endwith %}
+        <h1>Welcome {{logged_user.first_name}} {{logged_user.last_name}}</h1>
+        <p>Your email is: {{logged_user.email}}</p>
+        <p>Your password: {{logged_user.password}}</p>
+        <a href="/user/logout">logout</a>
+        <a href="/newpet/validate">Create a Pet</a>
+        <table class="table table-striped">
+    <table class="table table-striped table-hover">
+        <thead>
+            <th>Id</th>
+            <th>Animal</th>
+            <th>Is it Cool?</th>
+        <tbody>
+            {% for pet in all_pets %}
+            <tr>
+                <td>{{pet.id}}</td>
+                <td>{{pet.animal}}</td>
+                <td>{{pet.cool}}</td>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>
